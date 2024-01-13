@@ -1,20 +1,19 @@
-﻿@model IEnumerable<ganymede_web.Models.Horaire>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<ganymede_web.Models.Horaire>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="main-container">
+<h1>Horaire</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if ( Context.Session.GetInt32("id") != null) {
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Benevole)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
@@ -29,10 +28,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    @if ( Context.Session.GetInt32("id") == item.Id) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Benevole.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
@@ -43,11 +40,16 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
+    }
 }
     </tbody>
 </table>
+
+} else {
+<p>Connectez vous pour voir cetter page.</p>
+}
+</div>

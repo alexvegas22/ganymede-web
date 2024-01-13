@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -29,9 +32,20 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav flex" style="position:absolute;right:0">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles" asp-action="Login">Login</a>
-                        </li>
+                        
+                            @if ( Context.Session.GetInt32("id") == null) {
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles" asp-action="Login">Login</a>
+                                </li>
+                            } else {
+                              <li>
+                                          <a class="nav-link text-dark" asp-area="" asp-controller="Horaires" asp-action="Index">Mon Horaire</a>
+                               </li>
+                                <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                                </li>                      
+                            }
+                        
                     </ul>
                 </div>
             </div>

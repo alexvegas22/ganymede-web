@@ -167,6 +167,7 @@ namespace ganymede_web.Controllers
 
             if (unBenevole != null)
             {
+                HttpContext.Session.SetInt32("id", unBenevole.Id);
                 return RedirectToAction("Index", "Horaires");
             } else
             {

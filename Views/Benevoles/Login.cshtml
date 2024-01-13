@@ -3,9 +3,9 @@
     ViewData["Title"] = "Login";
 }
 
+<div class="login main-container">
 <h1>Login</h1>
 <hr/>
-<div class="login">
     <form asp-action="Login">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label asp-for="Password"></label>
-            <input asp-for="Password"></input>
+            <input asp-for="Password" type="password"></input>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="form-group">

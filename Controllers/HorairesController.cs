@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ganymede_web.Data;
 using ganymede_web.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace ganymede_web.Controllers
 {
     public class HorairesController : Controller
     {
         private readonly ganymede_webContext _context;
+        private readonly ISession session;
 
-        public HorairesController(ganymede_webContext context)
+        public HorairesController(ganymede_webContext context, IHttpContextAccessor httpContextAccessor)
         {
+            this.session = httpContextAccessor.HttpContext.Session;
             _context = context;
         }
 
