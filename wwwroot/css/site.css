@@ -17,6 +17,43 @@ html {
   min-height: 100%;
 }
 
+
+
 body {
-  margin-bottom: 60px;
+    background-color: #892532;
+    background-image: url('https://regenbrampton.com/wp-content/uploads/2021/04/shutterstock_752375134-1024x672.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+main{
+    
+    flex-grow:1;
+    padding: 20px;
+    margin-bottom: 60px;
+}
+p{
+    font-size: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+footer{
+    background-color: whitesmoke;
+    align-self:end;
+    justify-self: end;
+    margin: 0;
+    margin-top: 30px;
+}
+
+.blur{
+    filter: blur(3px);
+    opacity: 0.6;
+}
+.main-container{
+    margin : 10px;
+    background-color: whitesmoke;
+    padding : 40px;
+    border-radius : 10px;
+    box-shadow: 6px 6px teal;
+}
+
