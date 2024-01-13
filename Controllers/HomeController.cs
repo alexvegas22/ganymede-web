@@ -38,6 +38,10 @@ public class HomeController : Controller
 	{
 		return View();
 	}
+    public IActionResult Accepted()
+    {
+        return View();
+    }
 
     public IActionResult Logout() 
     {
