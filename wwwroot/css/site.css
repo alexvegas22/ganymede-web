@@ -20,7 +20,7 @@ html {
 
 
 body {
-    background-color: #892532;
+    
     background-image: url('https://regenbrampton.com/wp-content/uploads/2021/04/shutterstock_752375134-1024x672.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,10 +50,14 @@ footer{
     opacity: 0.6;
 }
 .main-container{
-    margin : 10px;
+    margin : 30px;
     background-color: whitesmoke;
     padding : 40px;
     border-radius : 10px;
-    box-shadow: 6px 6px teal;
+    box-shadow: 6px 6px  #892532 ;
+}
+.section-title{
+    text-align : left;
+    margin-bottom : 15px;
 }
 
