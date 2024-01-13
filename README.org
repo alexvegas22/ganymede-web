@@ -8,3 +8,5 @@ Installation:
 
 Nécéssite .NET 8.0 et peut être éxécuté à l'aide de visual studio ou VS code.
 https://learn.microsoft.com/en-us/dotnet/core/tutorials/with-visual-studio?pivots=dotnet-8-0
+
+La version finale du code est sur la branche MohamedF
