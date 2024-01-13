@@ -11,7 +11,7 @@ using ganymede_web.Data;
 namespace ganymede_web.Migrations
 {
     [DbContext(typeof(ganymede_webContext))]
-    [Migration("20240113025542_Initial-Create")]
+    [Migration("20240113093750_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -80,6 +80,28 @@ namespace ganymede_web.Migrations
                     b.ToTable("Horaire");
                 });
 
+            modelBuilder.Entity("ganymede_web.Models.Itineraire", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("EndLocation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("HoraireID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StartLocation")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HoraireID");
+
+                    b.ToTable("Itineraire");
+                });
+
             modelBuilder.Entity("ganymede_web.Models.Horaire", b =>
                 {
                     b.HasOne("ganymede_web.Models.Benevole", "Benevole")
@@ -89,6 +111,17 @@ namespace ganymede_web.Migrations
                         .IsRequired();
 
                     b.Navigation("Benevole");
+                });
+
+            modelBuilder.Entity("ganymede_web.Models.Itineraire", b =>
+                {
+                    b.HasOne("ganymede_web.Models.Horaire", "Horaire")
+                        .WithMany()
+                        .HasForeignKey("HoraireID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Horaire");
                 });
 #pragma warning restore 612, 618
         }
