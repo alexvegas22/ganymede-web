@@ -60,7 +60,7 @@ namespace ganymede_web.Controllers
             {
                 _context.Add(benevole);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details));
             }
             return View(benevole);
         }
