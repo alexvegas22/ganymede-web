@@ -158,5 +158,21 @@ namespace ganymede_web.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login([Bind("Email, MotDePasse")] Benevole benevole)
+        {
+            var unBenevole = await _context.Benevole.FirstOrDefaultAsync(b => b.Email == benevole.Email && b.Password == benevole.Password);
+
+            if (unBenevole != null)
+            {
+                return RedirectToAction("Index", "Benevole");
+            } else
+            {
+                ModelState.AddModelError(string.Empty, "Email ou mot passe est incorrect!");
+                return View();
+            }
+        }
     }
 }
