@@ -170,7 +170,7 @@ namespace ganymede_web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([Bind("Email, MotDePasse")] Benevole benevole)
+        public async Task<IActionResult> Login([Bind("Nom, Password")] Benevole benevole)
         {
             var unBenevole = await _context.Benevole.FirstOrDefaultAsync(b => b.Nom == benevole.Nom && b.Password == benevole.Password);
 
