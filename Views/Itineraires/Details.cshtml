@@ -3,11 +3,10 @@
 @{
     ViewData["Title"] = "Details";
 }
-@if ( Context.Session.GetInt32("id") != null) {
-<h1>Details</h1>
+<div class="main-container">
+<h1>Itineraire</h1>
 
 <div>
-    <h4>Itineraire</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -30,10 +29,12 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-} else {
-<p>Connecter-vous pour voir cette page</p>
-}
+<iframe
+  width="1000"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAt-d1ZtDhE0s0robvrvjbsNj_rtdwd_lU&origin=@Model.StartLocation&destination=@Model.EndLocation&mode=walking&units=metric&language=fr">
+</iframe></div>

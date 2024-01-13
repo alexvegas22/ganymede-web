@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ganymede_web.Data;
 using ganymede_web.Models;
+using System.Text.Json;
 
 namespace ganymede_web.Controllers
 {
     public class ItinerairesController : Controller
     {
         private readonly ganymede_webContext _context;
+        private static readonly HttpClient client = new HttpClient();
 
         public ItinerairesController(ganymede_webContext context)
         {
@@ -61,6 +63,20 @@ namespace ganymede_web.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
+                var myAPIKey = "AIzaSyAt-d1ZtDhE0s0robvrvjbsNj_rtdwd_lU";
+                var responseStringStart = await client.GetStringAsync("https://maps.googleapis.com/maps/api/geocode/json?address=" +System.Web.HttpUtility.UrlEncode(itineraire.StartLocation)+"&key=" + myAPIKey);
+
+                Rootobject mapdataStart =  JsonSerializer.Deserialize<Rootobject>(responseStringStart);
+
+                itineraire.StartLocation = mapdataStart.results[0].geometry.location.lat.ToString() + mapdataStart.results[0].geometry.location.lng.ToString();
+
+                var responseStringEnd = await client.GetStringAsync("https://maps.googleapis.com/maps/api/geocode/json?address=" +System.Web.HttpUtility.UrlEncode(itineraire.EndLocation)+"&key=" + myAPIKey);
+
+                Rootobject mapdataEnd =  JsonSerializer.Deserialize<Rootobject>(responseStringEnd);
+
+                itineraire.EndLocation = mapdataEnd.results[0].geometry.location.lat.ToString() + mapdataEnd.results[0].geometry.location.lng.ToString();
+*/
                 _context.Add(itineraire);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -161,4 +177,57 @@ namespace ganymede_web.Controllers
             return _context.Itineraire.Any(e => e.Id == id);
         }
     }
+
+    public class Rootobject
+{
+    public Result[] results { get; set; }
+    public string status { get; set; }
+}
+
+public class Result
+{
+    public Address_Components[] address_components { get; set; }
+    public string formatted_address { get; set; }
+    public Geometry geometry { get; set; }
+    public string place_id { get; set; }
+    public string[] types { get; set; }
+}
+
+public class Geometry
+{
+    public Location location { get; set; }
+    public string location_type { get; set; }
+    public Viewport viewport { get; set; }
+}
+
+public class Location
+{
+    public float lat { get; set; }
+    public float lng { get; set; }
+}
+
+public class Viewport
+{
+    public Northeast northeast { get; set; }
+    public Southwest southwest { get; set; }
+}
+
+public class Northeast
+{
+    public float lat { get; set; }
+    public float lng { get; set; }
+}
+
+public class Southwest
+{
+    public float lat { get; set; }
+    public float lng { get; set; }
+}
+
+public class Address_Components
+{
+    public string long_name { get; set; }
+    public string short_name { get; set; }
+    public string[] types { get; set; }
+}
 }
