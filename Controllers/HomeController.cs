@@ -23,6 +23,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Formulaire()
+    {
+	return View();
+    }
+    
     public IActionResult Contact()
     {
         return View();
