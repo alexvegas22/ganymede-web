@@ -4,7 +4,7 @@
 @model IEnumerable<ganymede_web.Models.Horaire>
 
 @{
-    ViewData["Title"] = "Index";
+ViewData["Title"] = "Index";
 }
 
 <div class="main-container">
@@ -50,7 +50,11 @@
             </td>
         </tr>
     } else {
-         @if (Context.Session.GetInt32("id") == item.Id) {
+        @if (Context.Session.GetInt32("id") == item.Id) {
+	
+	    var start = item.StartTime.ToString("yyyyMMdd’T’HHmmss’Z’");
+	    var end = item.EndTime.ToString("yyyyMMdd’T’HHmmss’Z’");
+	
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
@@ -62,8 +66,9 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
+	      <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Shift+de+@item.Role&dates=@start/@end&location=Cote+des+neiges+Montreal"> Ajouter à votre calendrier</a>
             </td>
-        </tr>
+        </tr> 
     }
     }
 }
