@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<div class="main-container">
+@if ( Context.Session.GetInt32("id") != null) {
+<h1>Itinéraires</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -45,3 +46,7 @@
 }
     </tbody>
 </table>
+} else {
+<p>Connecter-vous pour voir cette page</p>
+}
+</div>

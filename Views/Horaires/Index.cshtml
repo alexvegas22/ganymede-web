@@ -9,6 +9,11 @@
 
 <div class="main-container">
 <h1>Horaire</h1>
+@if ( Context.Session.GetString("nom") == "Admin") {
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+}
 
 @if ( Context.Session.GetInt32("id") != null) {
 <table class="table">
@@ -28,7 +33,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    @if ( Context.Session.GetInt32("id") == item.Id) {
+    @if (Context.Session.GetString("nom") == "Admin" ) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
@@ -40,9 +45,26 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
+    } else {
+         @if (Context.Session.GetInt32("id") == item.Id) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
     }
 }
     </tbody>

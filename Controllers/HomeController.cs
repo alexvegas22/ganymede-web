@@ -46,6 +46,7 @@ public class HomeController : Controller
     public IActionResult Logout() 
     {
         session.Remove("id");
+        session.Remove("nom");
         return View();
     }
 

@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,41 +12,61 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ganymede-web.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img style="width:24px;height:24px;" src="~/css/images/hands-helping.png" /></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><img
+                                    style="width:24px;height:24px;" src="~/css/images/hands-helping.png" /></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dons">Donations</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Dons">Donations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles" asp-action="Create">Joignez-vous à notre équipe</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles"
+                                asp-action="Create">Joignez-vous à notre équipe</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav flex" style="position:absolute;right:0">
-                        
-                            @if ( Context.Session.GetInt32("id") == null) {
+
+                        @if (Context.Session.GetInt32("id") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles"
+                                    asp-action="Login">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            @if (Context.Session.GetString("nom") == "Admin")
+                            {
                                 <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles" asp-action="Login">Login</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles"
+                                        asp-action="Index">Bénévoles</a>
                                 </li>
-                            } else {
-                              <li>
-                                          <a class="nav-link text-dark" asp-area="" asp-controller="Horaires" asp-action="Index">Mon Horaire</a>
-                               </li>
-                                <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-                                </li>                      
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Itineraires"
+                                        asp-action="Index">Itinéraires</a>
+                                </li>
                             }
-                        
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Horaires" asp-action="Index">Horaire</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Logout">Logout</a>
+                            </li>
+
+                        }
                     </ul>
                 </div>
             </div>
@@ -59,7 +80,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Ganymède - Voyez notre projet sur <a href="https://github.com/alexvegas22/ganymede-web">GitHub</a>
+            &copy; 2024 - Ganymède - Voyez notre projet sur <a
+                href="https://github.com/alexvegas22/ganymede-web">GitHub</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -67,4 +89,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

@@ -1,10 +1,11 @@
 ﻿@model ganymede_web.Models.Benevole
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modifier";
 }
-
-<h1>Edit</h1>
+<div class="main-container">
+@if ( Context.Session.GetString("nom") == "Admin") {
+<h1>Modifier</h1>
 
 <h4>Benevole</h4>
 <hr />
@@ -63,7 +64,10 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+} else {
+<p></p>
+}
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
