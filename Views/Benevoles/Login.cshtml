@@ -4,23 +4,29 @@
 }
 
 
-<div class="login main-container">
+<div class=" row text-center main-container justify-content-center">
+    <div class="col-md-4 text-center justify-content-center">
 <h1>Login</h1>
 <hr/>
 <form asp-action="Login">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Nom"></label>
-            <input asp-for="Nom"></input>
+                <label asp-for="Nom" class="control-label"></label>
+                <br />
+            <input asp-for="Nom">
             <span asp-validation-for="Nom" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Password"></label>
-            <input asp-for="Password"></input>
+                <label asp-for="Password" class="control-label"></label>
+                <br />
+            <input asp-for="Password">
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
+        <br />
         <div class="form-group">
-            <input type="submit" value="Login" class="btn-primary"></input>
+                <input type="submit" value="Se connecter" class="btn colorbutton">
         </div>
     </form>
 </div>
+</div>
+
