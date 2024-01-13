@@ -1,0 +1,25 @@
+﻿@model ganymede_web.Models.Benevole
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+<hr/>
+<div class="login">
+    <form asp-action="Login">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Nom"></label>
+            <input asp-for="Nom"></input>
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password"></input>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" class="btn-primary"></input>
+        </div>
+    </form>
+</div>
