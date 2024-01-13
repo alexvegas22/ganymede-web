@@ -1,0 +1,5 @@
+#+title: Application Web Ganymède
+#+author: Alexandre Baudouin, Julien Giguère, Mohamed Fateme, Andrew Tremblay
+#+date: 2024-01-12
+
+Our goal with this project is to provide a platform for volunteers and donors to help the homeless living in Côte-Des-Neiges, letting people sign up as volunteers, giving them schedules and itineraries. The donation page lets donors send money through online payments or contact the Ganymède team for donating physical goods.
