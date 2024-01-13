@@ -17,5 +17,10 @@ namespace ganymede_web.Data
         public DbSet<ganymede_web.Models.Horaire> Horaire { get; set; } = default!;
         public DbSet<ganymede_web.Models.Benevole> Benevole { get; set; } = default!;
         public DbSet<ganymede_web.Models.Itineraire> Itineraire { get; set; } = default!;
+
+        internal Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

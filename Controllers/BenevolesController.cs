@@ -153,5 +153,10 @@ namespace ganymede_web.Controllers
         {
             return _context.Benevole.Any(e => e.Id == id);
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }
