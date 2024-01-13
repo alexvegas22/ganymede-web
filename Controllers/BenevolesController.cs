@@ -152,6 +152,7 @@ namespace ganymede_web.Controllers
             if (benevole != null)
             {
                 _context.Benevole.Remove(benevole);
+                
             }
 
             await _context.SaveChangesAsync();

@@ -16,8 +16,11 @@ namespace ganymede_web.Models
         public string? NomEtablissement { get; set; }
         [DisplayName("Voulez-vous faire des tournées?")]
         public bool rolePreferee { get; set; }
+        [DisplayName("Etes -vous libre la fin de semaine?")]
         public bool LibreFinDeSemaine { get; set; }
+        [DisplayName("Etes -vous libre lesjours fériés?")]
         public bool LibreJourFeries { get; set; }
+        [DisplayName("Avez vous une certificat de secourisme?")]
         public bool RecuFormationPremierSoins { get; set; }
 
 
