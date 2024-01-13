@@ -8,10 +8,10 @@
 }
 
 <div class="main-container">
-<h1>Horaire</h1>
+<h1>Quart de travail </h1>
 @if ( Context.Session.GetString("nom") == "Admin") {
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Créer un quart de travail</a>
 </p>
 }
 
@@ -45,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
             </td>
         </tr>
     } else {

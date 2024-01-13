@@ -4,12 +4,14 @@
     ViewData["Title"] = "Details";
 }
 @if ( Context.Session.GetInt32("id") != null) {
-<h1>Details</h1>
+
 
 <div>
-    <h4>Itineraire</h4>
+    <h4>Itinéraire</h4>
     <hr />
-    <dl class="row">
+    <dl class="row main-container">
+            <h4>Itinéraire</h4>
+            <hr />
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Horaire)
         </dt>
@@ -31,8 +33,8 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
+    <a asp-action="Index">Revenir vers la liste</a>
 </div>
 } else {
 <p>Connecter-vous pour voir cette page</p>
