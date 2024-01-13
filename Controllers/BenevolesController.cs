@@ -48,6 +48,10 @@ namespace ganymede_web.Controllers
         {
             return View();
         }
+        public IActionResult Accepted()
+        {
+            return View();
+        }
 
         // POST: Benevoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -60,9 +64,14 @@ namespace ganymede_web.Controllers
             {
                 _context.Add(benevole);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Accepted));
             }
-            return View(benevole);
+            return View(Accepted);
+        }
+
+        private IActionResult View(Func<IActionResult> accepted)
+        {
+            return RedirectToAction(nameof(Accepted));
         }
 
         // GET: Benevoles/Edit/5

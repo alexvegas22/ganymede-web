@@ -36,7 +36,7 @@ public class HomeController : Controller
 	{
 		return View();
 	}
-    public IActionResult Confirmation()
+    public IActionResult Accepted()
     {
         return View();
     }
