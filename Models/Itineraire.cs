@@ -12,7 +12,7 @@ namespace ganymede_web.Models
         public int Id { get; set; }
         [ForeignKey("Horaire")]
         public int HoraireID { get; set; }
-        [DisplayName("Horaire Id")]
+        [DisplayName("Identifiant du quart.")]
         public Horaire? Horaire { get; set; }
         [DisplayName("Location de départ")]
         public string? StartLocation { get; set; }
