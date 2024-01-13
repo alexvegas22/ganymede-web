@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using ganymede_web.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ganymede_webContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ganymede_webContext") ?? throw new InvalidOperationException("Connection string 'ganymede_webContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
