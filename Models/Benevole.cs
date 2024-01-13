@@ -13,6 +13,7 @@ namespace ganymede_web.Models
         [DisplayName("Mot de passe")]
         public string? Password { get; set; }
         public int Age { get; set; }
+        [DisplayName("Nom de l'établissement")]
         public string? NomEtablissement { get; set; }
         [DisplayName("Voulez-vous faire des tournées?")]
         public bool rolePreferee { get; set; }
