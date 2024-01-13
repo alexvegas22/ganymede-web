@@ -22,5 +22,6 @@ namespace ganymede_web.Data
         {
             throw new NotImplementedException();
         }
+        public DbSet<ganymede_web.Models.Don> Don { get; set; } = default!;
     }
 }

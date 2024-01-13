@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ganymede_web.Data;
 
@@ -10,9 +11,11 @@ using ganymede_web.Data;
 namespace ganymede_web.Migrations
 {
     [DbContext(typeof(ganymede_webContext))]
-    partial class ganymede_webContextModelSnapshot : ModelSnapshot
+    [Migration("20240113043334_Dons")]
+    partial class Dons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -97,28 +100,6 @@ namespace ganymede_web.Migrations
                     b.ToTable("Horaire");
                 });
 
-            modelBuilder.Entity("ganymede_web.Models.Itineraire", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("EndLocation")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("HoraireID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("StartLocation")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HoraireID");
-
-                    b.ToTable("Itineraire");
-                });
-
             modelBuilder.Entity("ganymede_web.Models.Horaire", b =>
                 {
                     b.HasOne("ganymede_web.Models.Benevole", "Benevole")
@@ -128,17 +109,6 @@ namespace ganymede_web.Migrations
                         .IsRequired();
 
                     b.Navigation("Benevole");
-                });
-
-            modelBuilder.Entity("ganymede_web.Models.Itineraire", b =>
-                {
-                    b.HasOne("ganymede_web.Models.Horaire", "Horaire")
-                        .WithMany()
-                        .HasForeignKey("HoraireID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Horaire");
                 });
 #pragma warning restore 612, 618
         }
