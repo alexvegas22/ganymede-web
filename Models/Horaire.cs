@@ -11,11 +11,11 @@ namespace ganymede_web.Models
         [ForeignKey("Benevole")]
         public int BenevoleID { get; set; }
         public Benevole? Benevole { get; set; } 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime EndTime { get; set; }
-        public bool Role { get; set; } 
+        public String Role { get; set; } 
 
 
     }
