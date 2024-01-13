@@ -10,23 +10,23 @@ using ganymede_web.Models;
 
 namespace ganymede_web.Controllers
 {
-    public class HorairesController : Controller
+    public class ItinerairesController : Controller
     {
         private readonly ganymede_webContext _context;
 
-        public HorairesController(ganymede_webContext context)
+        public ItinerairesController(ganymede_webContext context)
         {
             _context = context;
         }
 
-        // GET: Horaires
+        // GET: Itineraires
         public async Task<IActionResult> Index()
         {
-            var ganymede_webContext = _context.Horaire.Include(h => h.Benevole);
+            var ganymede_webContext = _context.Itineraire.Include(i => i.Horaire);
             return View(await ganymede_webContext.ToListAsync());
         }
 
-        // GET: Horaires/Details/5
+        // GET: Itineraires/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +34,42 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire
-                .Include(h => h.Benevole)
+            var itineraire = await _context.Itineraire
+                .Include(i => i.Horaire)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (horaire == null)
+            if (itineraire == null)
             {
                 return NotFound();
             }
 
-            return View(horaire);
+            return View(itineraire);
         }
 
-        // GET: Horaires/Create
+        // GET: Itineraires/Create
         public IActionResult Create()
         {
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id");
+            ViewData["HoraireID"] = new SelectList(_context.Horaire, "Id", "Id");
             return View();
         }
 
-        // POST: Horaires/Create
+        // POST: Itineraires/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BenevoleID,StartTime,EndTime,Role")] Horaire horaire)
+        public async Task<IActionResult> Create([Bind("Id,HoraireID,StartLocation,EndLocation")] Itineraire itineraire)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(horaire);
+                _context.Add(itineraire);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            ViewData["HoraireID"] = new SelectList(_context.Horaire, "Id", "Id", itineraire.HoraireID);
+            return View(itineraire);
         }
 
-        // GET: Horaires/Edit/5
+        // GET: Itineraires/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +77,23 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire.FindAsync(id);
-            if (horaire == null)
+            var itineraire = await _context.Itineraire.FindAsync(id);
+            if (itineraire == null)
             {
                 return NotFound();
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            ViewData["HoraireID"] = new SelectList(_context.Horaire, "Id", "Id", itineraire.HoraireID);
+            return View(itineraire);
         }
 
-        // POST: Horaires/Edit/5
+        // POST: Itineraires/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BenevoleID,StartTime,EndTime,Role")] Horaire horaire)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,HoraireID,StartLocation,EndLocation")] Itineraire itineraire)
         {
-            if (id != horaire.Id)
+            if (id != itineraire.Id)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace ganymede_web.Controllers
             {
                 try
                 {
-                    _context.Update(horaire);
+                    _context.Update(itineraire);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HoraireExists(horaire.Id))
+                    if (!ItineraireExists(itineraire.Id))
                     {
                         return NotFound();
                     }
@@ -118,11 +118,11 @@ namespace ganymede_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            ViewData["HoraireID"] = new SelectList(_context.Horaire, "Id", "Id", itineraire.HoraireID);
+            return View(itineraire);
         }
 
-        // GET: Horaires/Delete/5
+        // GET: Itineraires/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,35 +130,35 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire
-                .Include(h => h.Benevole)
+            var itineraire = await _context.Itineraire
+                .Include(i => i.Horaire)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (horaire == null)
+            if (itineraire == null)
             {
                 return NotFound();
             }
 
-            return View(horaire);
+            return View(itineraire);
         }
 
-        // POST: Horaires/Delete/5
+        // POST: Itineraires/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var horaire = await _context.Horaire.FindAsync(id);
-            if (horaire != null)
+            var itineraire = await _context.Itineraire.FindAsync(id);
+            if (itineraire != null)
             {
-                _context.Horaire.Remove(horaire);
+                _context.Itineraire.Remove(itineraire);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HoraireExists(int id)
+        private bool ItineraireExists(int id)
         {
-            return _context.Horaire.Any(e => e.Id == id);
+            return _context.Itineraire.Any(e => e.Id == id);
         }
     }
 }

@@ -10,23 +10,22 @@ using ganymede_web.Models;
 
 namespace ganymede_web.Controllers
 {
-    public class HorairesController : Controller
+    public class BenevolesController : Controller
     {
         private readonly ganymede_webContext _context;
 
-        public HorairesController(ganymede_webContext context)
+        public BenevolesController(ganymede_webContext context)
         {
             _context = context;
         }
 
-        // GET: Horaires
+        // GET: Benevoles
         public async Task<IActionResult> Index()
         {
-            var ganymede_webContext = _context.Horaire.Include(h => h.Benevole);
-            return View(await ganymede_webContext.ToListAsync());
+            return View(await _context.Benevole.ToListAsync());
         }
 
-        // GET: Horaires/Details/5
+        // GET: Benevoles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,39 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire
-                .Include(h => h.Benevole)
+            var benevole = await _context.Benevole
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (horaire == null)
+            if (benevole == null)
             {
                 return NotFound();
             }
 
-            return View(horaire);
+            return View(benevole);
         }
 
-        // GET: Horaires/Create
+        // GET: Benevoles/Create
         public IActionResult Create()
         {
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id");
             return View();
         }
 
-        // POST: Horaires/Create
+        // POST: Benevoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BenevoleID,StartTime,EndTime,Role")] Horaire horaire)
+        public async Task<IActionResult> Create([Bind("Id,Nom,Password,Age,NomEtablissement,rolePreferee,LibreFinDeSemaine,LibreJourFeries,RecuFormationPremierSoins")] Benevole benevole)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(horaire);
+                _context.Add(benevole);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            return View(benevole);
         }
 
-        // GET: Horaires/Edit/5
+        // GET: Benevoles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +73,22 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire.FindAsync(id);
-            if (horaire == null)
+            var benevole = await _context.Benevole.FindAsync(id);
+            if (benevole == null)
             {
                 return NotFound();
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            return View(benevole);
         }
 
-        // POST: Horaires/Edit/5
+        // POST: Benevoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BenevoleID,StartTime,EndTime,Role")] Horaire horaire)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nom,Password,Age,NomEtablissement,rolePreferee,LibreFinDeSemaine,LibreJourFeries,RecuFormationPremierSoins")] Benevole benevole)
         {
-            if (id != horaire.Id)
+            if (id != benevole.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace ganymede_web.Controllers
             {
                 try
                 {
-                    _context.Update(horaire);
+                    _context.Update(benevole);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HoraireExists(horaire.Id))
+                    if (!BenevoleExists(benevole.Id))
                     {
                         return NotFound();
                     }
@@ -118,11 +113,10 @@ namespace ganymede_web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BenevoleID"] = new SelectList(_context.Benevole, "Id", "Id", horaire.BenevoleID);
-            return View(horaire);
+            return View(benevole);
         }
 
-        // GET: Horaires/Delete/5
+        // GET: Benevoles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,35 +124,34 @@ namespace ganymede_web.Controllers
                 return NotFound();
             }
 
-            var horaire = await _context.Horaire
-                .Include(h => h.Benevole)
+            var benevole = await _context.Benevole
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (horaire == null)
+            if (benevole == null)
             {
                 return NotFound();
             }
 
-            return View(horaire);
+            return View(benevole);
         }
 
-        // POST: Horaires/Delete/5
+        // POST: Benevoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var horaire = await _context.Horaire.FindAsync(id);
-            if (horaire != null)
+            var benevole = await _context.Benevole.FindAsync(id);
+            if (benevole != null)
             {
-                _context.Horaire.Remove(horaire);
+                _context.Benevole.Remove(benevole);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HoraireExists(int id)
+        private bool BenevoleExists(int id)
         {
-            return _context.Horaire.Any(e => e.Id == id);
+            return _context.Benevole.Any(e => e.Id == id);
         }
     }
 }
