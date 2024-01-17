@@ -4,7 +4,6 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="main-container">
 @if ( Context.Session.GetString("nom") == "Admin") {
 
 <h1>Edit</h1>
@@ -45,7 +44,6 @@
 } else {
 <p></p>
 }
-</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
