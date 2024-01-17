@@ -1,4 +1,9 @@
-﻿@model IEnumerable<ganymede_web.Models.Itineraire>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using System.Linq
+@using System.Data
+
+@model IEnumerable<ganymede_web.Models.Itineraire>
 
 @{
     ViewData["Title"] = "Index";
@@ -27,6 +32,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+        @if(Context.Session.GetString("nom")=="Admin"){
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Horaire.Id)
@@ -43,6 +49,28 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
             </td>
         </tr>
+        } else {
+            @if ( Context.Session.GetInt32("id") == item.Horaire.BenevoleID){
+                <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horaire.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndLocation)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Détails</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+
+
+            }
+        }
 }
     </tbody>
 </table>
@@ -50,3 +78,7 @@
 <p>Connecter-vous pour voir cette page</p>
 }
 </div>
+<script>
+    console.log(item.Horaire)
+
+</script>

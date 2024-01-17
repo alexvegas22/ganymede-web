@@ -50,7 +50,7 @@ ViewData["Title"] = "Index";
             </td>
         </tr>
     } else {
-        @if (Context.Session.GetInt32("id") == item.Id) {
+        @if (Context.Session.GetInt32("id") == item.BenevoleID) {
 	
 	    var start = item.StartTime.ToString("yyyyMMdd’T’HHmmss’Z’");
 	    var end = item.EndTime.ToString("yyyyMMdd’T’HHmmss’Z’");
