@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="~/ganymede-web.styles.css" asp-append-version="true" />
 </head>
 
-<body>
+<body id="body">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -28,13 +28,14 @@
                                     style="width:24px;height:24px;" src="~/css/images/hands-helping.png" /></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Dons">Donations</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles"
                                 asp-action="Create">Joignez-vous à notre équipe</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                asp-action="Dons">Donations</a>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav flex" style="position:absolute;right:0">
 
@@ -53,11 +54,11 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Benevoles"
                                         asp-action="Index">Bénévoles</a>
                                 </li>
-                                <li class="nav-item">
+                            }
+                            <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Itineraires"
                                         asp-action="Index">Itinéraires</a>
                                 </li>
-                            }
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Horaires" asp-action="Index">Horaire</a>
                             </li>
@@ -72,7 +73,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container"> 
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -91,3 +92,4 @@
 </body>
 
 </html>
+<script src="~/js/cycleiamge.js"></script>

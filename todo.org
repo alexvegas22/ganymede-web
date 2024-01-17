@@ -1,0 +1,29 @@
+* TODO
+
+** Elements to implement
+1. Chat for teams
+2. Worker dashboard
+   + visual schedule
+   + list of coworkers for today
+   + total pay for the period (usually 2 weeks but could have an option for manager to edit this value)
+   + pay for the shift
+   + option to ask for a switch swap
+   + total hours   
+3. Availabilites
+   
+4. User preferences/options
+   + color themes
+   + languages
+
+5. Admin dashboard
+   + visualize weeks
+   + access workers schedules
+   + fire someone
+   + hire someone
+   + assign shifts
+   + Approve shift swaps
+     
+6. Automated shift assignement (AI or not)
+
+
+** Implemented Features (reset after push to main)
