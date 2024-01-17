@@ -3,13 +3,11 @@
 @{
     ViewData["Title"] = "Détails";
 }
-@if ( Context.Session.GetInt32("id") != null) {
-
+<div class="">
+<h1>Itineraire</h1>
 
 <div>
-    <dl class="row main-container">
-            <h4>Itinéraire</h4>
-            <hr />
+    <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Horaire)
         </dt>
@@ -31,20 +29,18 @@
             <a id="liengoog" href="https://www.google.com/maps/dir/?api=1">
                 Montrer l'itinéraire vers la location.
             </a>
+            
     </dl>
 </div>
 
+    
        <div id="LinkGoogle" style="display:none;">
         @Html.DisplayFor(model => model.StartLocation)
         </div>
     <div id="LinkGoogleDestination" style="display:none;">
         @Html.DisplayFor(model => model.EndLocation)
     </div>
-
-
-} else {
-<p>Connecter-vous pour voir cette page</p>
-}
+    
 <script>
     console.log(`Hi`)
     document.addEventListener("DOMContentLoaded", () => {
@@ -59,3 +55,5 @@
         console.log(liengoog.href + "&origin=" + startLocation)
         liengoog.href = liengoog.href + "&origin=" + startLocation + "&destination=" + endLocation
     });
+
+</script>
