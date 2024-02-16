@@ -30,10 +30,7 @@
             <a id="liengoog" href="https://www.google.com/maps/dir/?api=1">
                 Montrer l'itinéraire vers la location.
             </a>
-            <div>
-                <a asp-action="Edit" asp-route-id="@Model?.Id">Modifier</a> |
-                <a asp-action="Index">Revenir vers la liste</a>
-            </div>
+            
     </dl>
 </div>
 
@@ -45,10 +42,6 @@
         @Html.DisplayFor(model => model.EndLocation)
     </div>
     
-
-} else {
-<p>Connecter-vous pour voir cette page</p>
-}
 <script>
     console.log(`Hi`)
     document.addEventListener("DOMContentLoaded", () => {
@@ -65,13 +58,3 @@
     });
 
 </script>
-=======
-<iframe
-  width="1000"
-  height="450"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAt-d1ZtDhE0s0robvrvjbsNj_rtdwd_lU&origin=@Model.StartLocation&destination=@Model.EndLocation&mode=walking&units=metric&language=fr">
-</iframe></div>
